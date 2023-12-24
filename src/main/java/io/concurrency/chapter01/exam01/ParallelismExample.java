@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * core 12, task 12
+ *
  */
 public class ParallelismExample {
     public static void main(String[] args) {
