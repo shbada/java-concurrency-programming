@@ -6,11 +6,15 @@ import java.nio.file.Path;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * 동시성에 최적화 되도록 구현
+ */
 public class IOBoundExample {
     public static void main(String[] args) {
         int numThreads = Runtime.getRuntime().availableProcessors() / 2;
         ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
 
+        //
         for (int i = 0; i < numThreads; i++) {
             executorService.submit(() -> {
                 try {
