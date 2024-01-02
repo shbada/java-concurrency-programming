@@ -1,5 +1,8 @@
 package io.concurrency.chapter02.exam01;
 
+/**
+ * Runnable 익명 클래스
+ */
 public class AnonymousRunnableClassExample {
     public static void main(String[] args) {
 

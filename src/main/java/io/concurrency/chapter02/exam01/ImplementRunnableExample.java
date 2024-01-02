@@ -1,5 +1,8 @@
 package io.concurrency.chapter02.exam01;
 
+/**
+ * Runnable 구현
+ */
 public class ImplementRunnableExample {
     public static void main(String[] args) {
 
