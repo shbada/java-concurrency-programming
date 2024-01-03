@@ -1,5 +1,9 @@
 package io.concurrency.chapter02.exam02;
 
+/**
+ * 싱글 스레드
+ * 모든 작업이 끝나면 main 스레드가 종료됨
+ */
 public class SingleThreadAppTerminatedExample {
     public static void main(String[] args) {
 

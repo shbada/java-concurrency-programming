@@ -1,5 +1,13 @@
 package io.concurrency.chapter02.exam02;
 
+/**
+ * 멀티 스레드
+ * main 스레드가 종료된다해서 종료되는 것이 아님
+ * main 스레드는 가장 먼저 종료됨
+ * 그 이후, 각 쓰레드가 모두 수행되고, 모두 종료가 되어야 애플리케이션이 종료된다.
+ * 멀티 스레드의 경우 모든 쓰레드가 모두 종료되어야한다.
+ * 쓰레드 중 단 하나라도 종료가 안되면 애플리케이션이 종료가 안된다.
+ */
 public class MultiThreadAppTerminatedExample {
     public static void main(String[] args) {
 
