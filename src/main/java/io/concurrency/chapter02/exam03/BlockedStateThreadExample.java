@@ -1,5 +1,8 @@
 package io.concurrency.chapter02.exam03;
 
+/**
+ * BLOCKED
+ */
 public class BlockedStateThreadExample {
 
     public static void main(String[] args) throws InterruptedException {
@@ -12,10 +15,12 @@ public class BlockedStateThreadExample {
             }
         });
         Thread thread2 = new Thread(() -> {
+            // thread1이 획득한 lock를 획득하려고 시도 -> blocked
             synchronized (lock) {
                 System.out.println("Thread 2 실행 중");
             }
         });
+        // thread의 start()는 두번 호출할 수 없다.
         thread1.start();
         Thread.sleep(100); // thread1이 lock을 점유하도록 잠시 대기
         thread2.start();

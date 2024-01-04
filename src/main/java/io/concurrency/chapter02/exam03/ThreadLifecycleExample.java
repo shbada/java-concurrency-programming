@@ -1,5 +1,8 @@
 package io.concurrency.chapter02.exam03;
 
+/**
+ * 6가지 상태 대상
+ */
 public class ThreadLifecycleExample {
 
     public static void main(String[] args) throws InterruptedException {

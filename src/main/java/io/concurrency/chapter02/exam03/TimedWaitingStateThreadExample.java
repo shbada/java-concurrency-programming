@@ -1,5 +1,8 @@
 package io.concurrency.chapter02.exam03;
 
+/**
+ * TIMED_WAITING
+ */
 public class TimedWaitingStateThreadExample {
 
     public static void main(String[] args) throws InterruptedException {

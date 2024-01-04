@@ -1,5 +1,8 @@
 package io.concurrency.chapter02.exam03;
 
+/**
+ * TERMINATED
+ */
 public class TerminatedStateThreadExample {
 
     public static void main(String[] args) throws InterruptedException {

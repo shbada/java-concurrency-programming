@@ -1,5 +1,8 @@
 package io.concurrency.chapter02.exam03;
 
+/**
+ * RUNNABLE
+ */
 public class RunnableStateThreadExample {
 
     public static void main(String[] args) throws InterruptedException {
