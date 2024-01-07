@@ -20,6 +20,7 @@ public class InterruptSleepExample {
 
         Thread.sleep(1000);
 //
-        sleepingThread.interrupt();
+        System.out.println("interrupt()...");
+        sleepingThread.interrupt(); // 인터럽트 걸기
     }
 }
