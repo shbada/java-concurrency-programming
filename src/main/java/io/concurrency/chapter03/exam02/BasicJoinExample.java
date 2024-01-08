@@ -20,6 +20,7 @@ public class BasicJoinExample {
 
         try {
 
+            // main 쓰레드가 대기하는것
             thread.join();
 
         } catch (InterruptedException e) {
