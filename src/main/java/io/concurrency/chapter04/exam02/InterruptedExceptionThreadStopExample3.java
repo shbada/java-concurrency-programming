@@ -7,6 +7,7 @@ public class InterruptedExceptionThreadStopExample3 {
                 while (!Thread.interrupted()) {
                     // 스레드의 작업을 수행합니다.
                     System.out.println("작업 스레드가 실행 중입니다.");
+                    // 초기화
                     System.out.println("인트럽트 상태 1 : " + Thread.currentThread().isInterrupted());
                     Thread.sleep(500);
                 }

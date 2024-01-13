@@ -9,6 +9,7 @@ public class InterruptedExceptionThreadStopExample5 {
                     System.out.println("작업 스레드가 실행 중입니다.");
                     System.out.println("인트럽트 상태 1 : " + Thread.currentThread().isInterrupted());
 
+                    // // 직접 던지는 경우에는 초기화되지 않지만 interrupted() 호출했으므로 초기화
                     if(Thread.interrupted()) throw new InterruptedException("thread is interrupted");
                 }
             } catch (InterruptedException e) {

@@ -4,11 +4,12 @@ public class InterruptedExceptionThreadStopExample2 {
     public static void main(String[] args) {
         Thread worker = new Thread(() -> {
             try {
-                while (!Thread.currentThread().isInterrupted()) {
+                // true가 되면 탈출
+                while (!Thread.currentThread().isInterrupted()) { // 탈출 조건 1
                     // 스레드의 작업을 수행합니다.
                     System.out.println("작업 스레드가 실행 중입니다.");
                     System.out.println("인트럽트 상태 1 : " + Thread.currentThread().isInterrupted());
-                    Thread.sleep(500);
+                    Thread.sleep(500); // 탈출 조건 2 (interrupted + sleep)
                 }
             } catch (InterruptedException e) {
                 // sleep 메서드가 인터럽트되면 InterruptedException을 던지며
