@@ -35,6 +35,8 @@ public class UserThreadLifecycleExample {
 //        userThread1.join();
 //        userThread2.join();
 
+        // 먼저 출력되더라도, main 쓰레드 종료는 아니다.
+        // 위 사용자 스레드가 종료되어야 main 스레드도 종료된다.
         System.out.println("모든 사용자 스레드가 종료되었습니다. 메인 스레드 종료.");
     }
 }

@@ -11,6 +11,7 @@ public class DaemonThreadLifeCycleExample {
             }
         });
 
+        // 끝나지 않는 데몬 스레드
         Thread daemonThread = new Thread(() -> {
             while (true){
                 try {
@@ -22,13 +23,14 @@ public class DaemonThreadLifeCycleExample {
             }
         });
 
-        daemonThread.setDaemon(true);
-        daemonThread.setDaemon(false);
+        daemonThread.setDaemon(true); // 데몬스레드 설정
+//        daemonThread.setDaemon(false); // 데몬스레드 해제
 
         userThread.start();
         daemonThread.start();
 
-
+        // 사용자 스레드가 완료되면 데몬 스레드는 진행중이여도 메인 쓰레드가 종료된다.
+        // 모든 사용자 스레드가 사라지면 데몬 스레드도 사라진다.
         userThread.join();
 
         System.out.println("메인 스레드 종료");

@@ -23,6 +23,8 @@ public class UserAndDaemonInheritanceExample {
         daemonThread.setDaemon(true);
 
         userThread.start();
+
+        // 데몬 스레드의 자식은 데몬스레드, 사용자 스레드의 자식은 사용자 스레드
         daemonThread.start();
     }
 }
