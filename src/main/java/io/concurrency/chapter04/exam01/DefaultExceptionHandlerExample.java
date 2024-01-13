@@ -10,7 +10,7 @@ public class DefaultExceptionHandlerExample {
         // 모든 스레드의 예외에 대한 기본 핸들러 설정
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
-            public void uncaughtException(Thread t, Throwable e) {
+            public void uncaughtException(Thread t, Throwable e) { // 쓰레드 예외 발생할 경우 실행
                 System.out.println(t.getName() + " 에서 예외 발생 " + e);
             }
         });

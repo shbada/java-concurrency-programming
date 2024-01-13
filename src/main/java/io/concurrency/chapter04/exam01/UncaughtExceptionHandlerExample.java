@@ -15,6 +15,7 @@ public class UncaughtExceptionHandlerExample {
         });
 
         // 스레드의 UncaughtExceptionHandler 설정
+        // 각 쓰레드별 설정해주고싶으면 각각을 설정해주면된다.
         thread.setUncaughtExceptionHandler((t, e) -> {
             LOGGER.log(Level.SEVERE, t.getName() + " 에서 예외가 발생했습니다.", e);
 
