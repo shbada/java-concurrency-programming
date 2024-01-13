@@ -23,7 +23,7 @@ public class InterruptedExceptionExample {
         }
 
         thread.interrupt();
-        thread.join();
+        thread.join(); // 인터럽트 상태인 thread에 join() 호출시 InterruptedException 발생
         System.out.println("인터럽트 상태 3: " + thread.isInterrupted());
     }
 }

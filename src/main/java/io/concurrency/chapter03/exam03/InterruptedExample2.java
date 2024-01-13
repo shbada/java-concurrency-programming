@@ -6,6 +6,7 @@ public class InterruptedExample2 {
             while (!Thread.interrupted()) {
                 System.out.println("스레드 2 작동 중");
             }
+            // interrupted() 이므로 초기화 : false
             System.out.println("인터럽트 상태: " + Thread.currentThread().isInterrupted());
         });
 

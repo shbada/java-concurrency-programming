@@ -5,6 +5,7 @@ public class InterruptExample {
 
         Thread thread1 = new Thread(() -> {
             System.out.println("스레드 1 작업 시작...");
+            // 스레드 2가 스레드 1을 인터럽트 했으므로 'true'
             System.out.println("스레드 1 인터럽트 상태: " + Thread.currentThread().isInterrupted());
         });
 

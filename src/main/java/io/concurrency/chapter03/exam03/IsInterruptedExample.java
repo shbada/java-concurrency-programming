@@ -3,6 +3,7 @@ package io.concurrency.chapter03.exam03;
 public class IsInterruptedExample {
     public static void main(String[] args) {
         Thread thread = new Thread(() -> {
+            // 인터럽트 걸면 해당 반복문에서 빠져나온다
             while (!Thread.currentThread().isInterrupted()) {
                 System.out.println("스레드가 작동 중입니다.");
             }
@@ -17,6 +18,7 @@ public class IsInterruptedExample {
             e.printStackTrace();
         }
 
+        // 인터럽트
         thread.interrupt();
     }
 }

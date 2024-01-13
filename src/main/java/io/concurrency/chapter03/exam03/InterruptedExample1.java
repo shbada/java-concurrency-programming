@@ -3,10 +3,11 @@ package io.concurrency.chapter03.exam03;
 public class InterruptedExample1 {
     public static void main(String[] args) {
         Thread thread = new Thread(() -> {
-            while (!Thread.interrupted()) {
+            while (!Thread.interrupted()) { // true -> false로 초기화
                 System.out.println("스레드가 작동 중입니다.");
             }
             System.out.println("스레드가 인터럽트 되었습니다.");
+            // false로 초기화되었다.
             System.out.println("인터럽트 상태: " + Thread.currentThread().isInterrupted());
         });
         thread.start();
