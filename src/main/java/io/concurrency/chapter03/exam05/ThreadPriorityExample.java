@@ -34,6 +34,7 @@ public class ThreadPriorityExample {
             while (count < 10000000) {
                 count++;
             }
+            // 출력
             System.out.println(threadName + ": " + count);
         }
     }
