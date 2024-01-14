@@ -27,9 +27,14 @@ public class ThreadGroupScopeExample {
         subGroupThread.join();
 
         // 이미 생성된 스레드는 변경사항이 적용되지 않는다
+        // - 상위그룹스레드: 5
+        // - 하위그룹스레드: 5
         System.out.println(topGroupThread.getName() + ": " + topGroupThread.getPriority());
         System.out.println(subGroupThread.getName() + ": " + subGroupThread.getPriority());
 
+        // priority 바뀐 이후 새로 생성된 스레드
+        // - 유저스레드 1: 4
+        // - 유저스레드 2: 4 (자식 스레드 그룹에 속해더라도, 그 자식 스레드의 부모 스레드의 priority 를 따른다.)
         Thread userThread1 = new Thread(topGroup, () -> {}, "유저스레드 1");
         Thread userThread2 = new Thread(subGroup, () -> {}, "유저스레드 2");
 

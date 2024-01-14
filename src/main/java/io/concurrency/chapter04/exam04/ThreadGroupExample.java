@@ -9,7 +9,7 @@ public class ThreadGroupExample {
         // 새로운 스레드 그룹 생성
         ThreadGroup customGroup = new ThreadGroup("Custom Thread Group");
 
-        // 기본 스레드 그룹에 속한 스레드 생성
+        // 기본 스레드 그룹에 속한 스레드 생성 (main)
         Thread defaultGroupThread = new Thread(new GroupRunnable(), "DefaultGroupThread");
 
         // 메인 스레드 그룹에 속한 스레드 생성

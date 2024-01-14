@@ -7,6 +7,7 @@ public class    NestedThreadGroupExample {
         ThreadGroup topGroup = new ThreadGroup("최상위 스레드 그룹");
 
         // 최상위 스레드 그룹 내부에 하위 스레드 그룹 생성
+        // 첫번째 인자 : 부모 스레드 그룹
         ThreadGroup subGroup = new ThreadGroup(topGroup, "하위 스레드 그룹");
 
         // 최상위 스레드 그룹에 속한 스레드 생성

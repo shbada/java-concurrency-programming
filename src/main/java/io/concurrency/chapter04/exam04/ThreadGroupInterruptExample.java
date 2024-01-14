@@ -35,6 +35,7 @@ public class ThreadGroupInterruptExample {
 
         Thread.sleep(3000);  // 스레드들이 실행되게 잠시 대기
 
+        // 모든 스레드 그룹에 속한 스레드 중지
         System.out.println("그룹 스레드들 중지...");
         subGroup.interrupt();
         topGroup.interrupt();
