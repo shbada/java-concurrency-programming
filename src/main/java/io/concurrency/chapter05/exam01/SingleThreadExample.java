@@ -4,6 +4,7 @@ public class SingleThreadExample {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
 
+        // main 쓰레드에서 수행! (단일쓰레드)
         int sum = 0;
         for (int i = 1; i <= 1000; i++) {
             sum += i;
