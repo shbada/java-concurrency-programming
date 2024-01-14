@@ -1,8 +1,25 @@
 package io.concurrency.chapter04.exam05;
 
+/**
+ * debugging
+ * 1) Thread.java > ThreadLocal.ThreadLocalMap threadLocals = null;
+ *
+ * ThreadLocal > get()
+ * -> ThreadLocalMap이 null인 경우 setInitialValue() 호출 > createMap() (Entry 객체 사용)
+ *
+ * ThreadLocal > set()
+ * -> ThreadLocalMap 객체를 가져와서 set()
+ * ThreadLocalMap > set()
+ * -> 최종적으로 값 저장
+ *
+ * ThreadLocal > get()
+ * -> getEntry()
+ * ->
+ */
 public class ThreadLocalExample {
-    // ThreadLocal 변수 생성. 초기값은 null
+    // 초기값 설정
     private static ThreadLocal<String> threadLocal = ThreadLocal.withInitial(() -> "Hello World");
+    // ThreadLocal 변수 생성. 초기값은 null
 //    private static ThreadLocal<String> threadLocal = new ThreadLocal<>();
 
     public static void main(String[] args) {

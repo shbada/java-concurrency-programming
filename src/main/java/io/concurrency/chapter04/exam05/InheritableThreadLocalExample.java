@@ -25,7 +25,7 @@ public class InheritableThreadLocalExample {
             e.printStackTrace();
         }
 
-        // 부모 스레드의 값 확인
+        // 부모 스레드의 값 확인 (자식 스레드에서 변경한 값으로 셋팅되지 않음)
         System.out.println("부모 스레드의 값: " + inheritableThreadLocal.get());
     }
 }

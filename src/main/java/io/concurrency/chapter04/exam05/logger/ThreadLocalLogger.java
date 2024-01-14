@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThreadLocalLogger {
-
+    // ThreadLocal 사용하여 각 쓰레드별 로그남기기
     private static final ThreadLocal<List<String>> THREAD_LOG = ThreadLocal.withInitial(ArrayList::new);
 
     public static void addLog(String log) {
