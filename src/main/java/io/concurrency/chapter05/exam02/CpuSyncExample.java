@@ -6,6 +6,8 @@ public class CpuSyncExample {
 
     public static void main(String[] args) throws InterruptedException {
 
+        // 원자성 보장
+        // 예상 결과 = 실제 결과
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < ITERATIONS; i++) {
                 synchronized(CpuSyncExample.class) {
