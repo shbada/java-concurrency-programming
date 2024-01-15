@@ -13,7 +13,7 @@ public class ImmutableExample  implements Runnable{
     }
 
     public static void main(String[] args) {
-
+        // 불변 객체
         ImmutablePerson person = new ImmutablePerson("홍길동", 25);
 
         for (int i = 0; i < 10; i++) {

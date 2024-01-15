@@ -18,6 +18,7 @@ public class ThreadSafeLocalReferenceObjectExample {
 
     public void useLocalObject() {
         // 지역 객체 참조. 각 스레드는 이 객체의 독립된 인스턴스를 가짐.
+        // -> 스레드 안전
         LocalObject localObject = new LocalObject();
 
         for (int i = 0; i < 5; i++) {
