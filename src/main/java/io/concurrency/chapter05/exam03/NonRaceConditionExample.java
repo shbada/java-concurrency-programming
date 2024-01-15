@@ -10,7 +10,9 @@ public class NonRaceConditionExample {
         for (int i = 0; i < incrementThreads.length; i++) {
             incrementThreads[i] = new Thread(() -> {
                 for (int j = 0; j < 10000; j++) {
+                    // race condition 방지를 위함
                     synchronized(NonRaceConditionExample.class) {
+                        // Critical Section
                         sharedResource++; // 각 스레드가 공유 데이터에 동시에 접근할 수 없다
                     }
                 }

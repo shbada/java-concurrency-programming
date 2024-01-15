@@ -18,14 +18,12 @@ class SharedResource {
     public void increment() {
 
         for (int i = 0; i < 100000; i++) {
-
             synchronized (this) { // Entry Section
-
                 // Critical Section
                 counter++;
                 System.out.println(Thread.currentThread().getName() + ": " + counter);
 
-            }// Exit Section
+            } // Exit Section
         }
 
         // Remainder Section
