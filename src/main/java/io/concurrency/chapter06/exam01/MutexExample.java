@@ -4,6 +4,7 @@ public class MutexExample {
     public static void main(String[] args) throws InterruptedException {
         SharedData sharedData = new SharedData(new Mutex());
 
+        // 쓰레드 2개 실행
         Thread th1 = new Thread(sharedData::sum);
         Thread th2 = new Thread(sharedData::sum);
 
