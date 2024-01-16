@@ -33,10 +33,15 @@ class SharedResource {
     }
 
     public void sum() {
+        // P
         commonSemaphore.acquired();
+
+        // 임계영역
         for(int i=0; i< 1000000; i++) {
             value++;
         }
+
+        // V
         commonSemaphore.release();
     }
     public int getSum() {

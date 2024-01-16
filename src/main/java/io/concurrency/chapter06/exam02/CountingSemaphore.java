@@ -1,8 +1,10 @@
 package io.concurrency.chapter06.exam02;
 
 public class CountingSemaphore implements CommonSemaphore {
-    private int signal;
-    private int permits;
+    // permits 갯수를 넘으면 안되며, permits와 최초에 동일하게 셋팅해준다.
+    // -, + 되는 변수
+    private int signal; // 우리가 정할 수 없다. 생성자로 받을것
+    private int permits; // 얼마만큼의 쓰레드를 동시 허용할것인가?
 
     public CountingSemaphore(int permits) {
         this.permits = permits;
