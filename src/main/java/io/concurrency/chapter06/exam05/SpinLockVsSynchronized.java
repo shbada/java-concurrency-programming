@@ -2,14 +2,23 @@ package io.concurrency.chapter06.exam05;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * 참조용 예시
+ */
 public class SpinLockVsSynchronized {
     private AtomicBoolean spinLock = new AtomicBoolean(false);
     private final Object syncLock = new Object();
     private int count = 0;
 
+    // 쓰레드를 늘릴수록 컨텍스트 스위칭이 증가한다.
+    // 스핀락 시간 > synchronized 시간
+    // 쓰레드 5만개정도로 늘리니까 스핀락 시간 < synchronized 시간
     final static int THREAD_COUNT = 5;
     final int ITERATIONS = 10_000_000;
 
+    /**
+     * spin lock
+     */
     public void useSpinLock() {
         while (!spinLock.compareAndSet(false, true)) ;
         for (int j = 0; j < ITERATIONS; j++) {
@@ -18,6 +27,9 @@ public class SpinLockVsSynchronized {
         spinLock.set(false);
     }
 
+    /**
+     * synchronized block
+     */
     public void useSynchronized(){
         synchronized (syncLock) {
             for (int j = 0; j < ITERATIONS; j++) {
