@@ -8,6 +8,7 @@ public class InstanceMethodSynchronizedExamples {
         count++;
         System.out.println(Thread.currentThread().getName() + " 가 증가시켰습니다. 현재 값:" + count);
     }
+
     public synchronized void decrement(){
         count--;
         System.out.println(Thread.currentThread().getName() + " 가 감소시켰습니다. 현재 값:" + count);
@@ -18,7 +19,7 @@ public class InstanceMethodSynchronizedExamples {
     }
 
     public static void main(String[] args) {
-
+        // 하나의 객체로 실행 (모니터 동일)
         InstanceMethodSynchronizedExamples counter = new InstanceMethodSynchronizedExamples();
 
         Thread thread1 = new Thread(() -> {

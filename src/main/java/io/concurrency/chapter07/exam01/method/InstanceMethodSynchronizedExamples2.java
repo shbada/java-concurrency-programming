@@ -8,6 +8,7 @@ public class InstanceMethodSynchronizedExamples2 {
         count++;
         System.out.println(Thread.currentThread().getName() + " 가 증가시켰습니다. 현재 값:" + count);
     }
+
     public synchronized void decrement(){
         count--;
         System.out.println(Thread.currentThread().getName() + " 가 감소시켰습니다. 현재 값:" + count);
@@ -18,7 +19,8 @@ public class InstanceMethodSynchronizedExamples2 {
     }
 
     public static void main(String[] args) {
-
+        // 2개의 객체로 수행
+        // 여러개 모니터를 가지고 수행하더라도, 결국 같은 모니터끼리의 메서드는 스레드가 달라도 여전히 동기화가 된다.
         InstanceMethodSynchronizedExamples2 counter1 = new InstanceMethodSynchronizedExamples2();
         InstanceMethodSynchronizedExamples2 counter2 = new InstanceMethodSynchronizedExamples2();
 
@@ -31,8 +33,8 @@ public class InstanceMethodSynchronizedExamples2 {
 
         Thread thread2 = new Thread(() -> {
             for (int i = 0; i < 1000000; i++) {
-                counter2.increment();
-                counter1.decrement();
+                counter2.increment(); // t1이 수행중이여도 접근 가능
+                counter1.decrement(); // 1이 수행중일경우 , t2가 실행하지 못하고
             }
         });
 
