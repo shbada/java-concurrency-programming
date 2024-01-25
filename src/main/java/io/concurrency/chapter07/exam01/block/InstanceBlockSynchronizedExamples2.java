@@ -13,16 +13,22 @@ public class InstanceBlockSynchronizedExamples2 {
         }
     }
     public void incrementBlockLockObject() {
-        synchronized (lockObject){
+        synchronized (lockObject){ // this 여야 동기화되겠다
             count++;
             System.out.println(Thread.currentThread().getName() + " 가 LockObject 에 의해 블록 동기화 함 : " + count);
         }
     }
     public static void main(String[] args){
 
+        // 여기서 모니터는 4개다
+        // 각 개체가 2개씩 가지고 있으므로!
         InstanceBlockSynchronizedExamples2 example1 = new InstanceBlockSynchronizedExamples2();
         InstanceBlockSynchronizedExamples2 example2 = new InstanceBlockSynchronizedExamples2();
 
+        /*
+        thread1, thread2 , thread3, thread4 모두 모니터가 다르다.
+        상호배제없이 모두 접근 가능해버린다.
+         */
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 1000000; i++) {
                 example1.incrementBlockThis();

@@ -1,6 +1,7 @@
 package io.concurrency.chapter07.exam01.block;
 
 class MethodBlock{}
+
 public class StaticBlockSynchronizedExamples {
 
     private static int count = 0;
@@ -21,6 +22,8 @@ public class StaticBlockSynchronizedExamples {
     public static void main(String[] args) {
         StaticBlockSynchronizedExamples example = new StaticBlockSynchronizedExamples();
 
+        // thread1, thread2 는 서로 다른 모니터이므로 동시 접근 가능
+        // 공유 변수는 동일하므로 결과가 원하는 결과가 나오지 않을 수 있다
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
                 StaticBlockSynchronizedExamples.incrementBlockClass();

@@ -4,15 +4,18 @@ public class InstanceBlockSynchronizedExamples {
 
     private int count = 0;
 
+    // lock 객체 생성
     private Object lockObject = new Object();
 
     public void incrementBlockThis(){
-        synchronized (this){
+        //
+        synchronized (this) {
             count++;
             System.out.println(Thread.currentThread().getName() + " 가 This 에 의해 블록 동기화 함 : " + count);
         }
     }
     public void incrementBlockLockObject() {
+        // 모니터 객체가 동일해야 thread1, thread2 수행 후 thread3, thread4가 수행되서 원하는 결과가 나온다.
         synchronized (lockObject){
             count++;
             System.out.println(Thread.currentThread().getName() + " 가 LockObject 에 의해 블록 동기화 함 : " + count);
@@ -22,6 +25,10 @@ public class InstanceBlockSynchronizedExamples {
 
         InstanceBlockSynchronizedExamples example = new InstanceBlockSynchronizedExamples();
 
+        /*
+        thread1, thread2 는 서로 상호배제
+        thread3, thread4 는 서로 상호배제 (3 수행중 4 불가능)
+         */
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
                 example.incrementBlockThis();
