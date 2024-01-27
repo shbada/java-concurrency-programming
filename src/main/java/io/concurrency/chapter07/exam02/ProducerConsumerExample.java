@@ -16,7 +16,7 @@ class SharedQueue {
                 lock.wait();  // 대기
             }
 
-            queue.add(item);
+            queue.add(item); // consume()의 while문
             System.out.println("생산: " + item);
 
             lock.notifyAll();  // 대기 중인 모든 소비자에게 알림
@@ -31,7 +31,7 @@ class SharedQueue {
                 lock.wait();  // 대기
             }
 
-            int item = queue.poll();
+            int item = queue.poll(); // produce()의 while문
             System.out.println("소비: " + item);
 
             lock.notifyAll();  // 대기 중인 모든 생산자에게 알림
