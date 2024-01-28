@@ -1,5 +1,8 @@
 package io.concurrency.chapter07.exam04;
 
+/**
+ * 락의 순서에 의해 발생한 데드락
+ */
 public class DeadlockOrderExample {
     private static final Object lock1 = new Object();
     private static final Object lock2 = new Object();
@@ -18,6 +21,7 @@ public class DeadlockOrderExample {
     }
 
     private static void process1() {
+        // 서로 가지고있는 lock 해제 전에 다른 쓰레드의 lock을 기다리는 상황
         synchronized (lock1) {
             System.out.println(Thread.currentThread().getName() + " 이 lock1 을 획득하였습니다.");
 

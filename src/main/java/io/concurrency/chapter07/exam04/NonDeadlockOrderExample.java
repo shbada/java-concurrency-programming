@@ -18,6 +18,8 @@ public class NonDeadlockOrderExample {
     }
 
     private static void process1() {
+        // process1(), process2() : lock의 순서를 동일한게 한다.
+
         synchronized (lock1) {
             System.out.println(Thread.currentThread().getName() + " 이 lock1 을 획득하였습니다.");
 

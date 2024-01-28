@@ -1,5 +1,9 @@
 package io.concurrency.chapter07.exam04;
 
+/**
+ * 메서드 동기화 -> 블록 동기화로 해결
+ * lock 순서도 동일하게
+ */
 public class NonDeadlockObjectsExample {
     public static void main(String[] args) {
 
@@ -24,6 +28,7 @@ public class NonDeadlockObjectsExample {
             synchronized (ResourceA.class) { // 첫 번째로 ResourceA 락 획득
                 System.out.println(Thread.currentThread().getName() + ": methodA의 ResourceA 부분 실행");
 
+                // lock 객체를 다르게 둠
                 synchronized (ResourceB.class) { // 두 번째로 ResourceB 락 획득
                     System.out.println(Thread.currentThread().getName() + ": methodA의 ResourceB 부분 실행");
                     resourceB.methodB2();
@@ -44,6 +49,7 @@ public class NonDeadlockObjectsExample {
             synchronized (ResourceA.class) { // 첫 번째로 ResourceA 락 획득
                 System.out.println(Thread.currentThread().getName() + ": methodB의 ResourceA 부분 실행");
 
+                // lock 객체를 다르게 둠
                 synchronized (ResourceB.class) { // 두 번째로 ResourceB 락 획득
                     System.out.println(Thread.currentThread().getName() + ": methodB의 ResourceB 부분 실행");
                     resourceA.methodA2();

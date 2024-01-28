@@ -20,12 +20,16 @@ public class DeadlockObjectsExample {
 }
 
 class ResourceA {
+    // 아래 두 메서드는 동일한 모니터 객체를 가짐
+    // 따라서 methodA2() 를 호출했을때 methodA() 락이 걸려있으면 대기해야함
 
     public synchronized void methodA(ResourceB resourceB) {
         System.out.println(Thread.currentThread().getName() + ": methodA 실행");
         try {
             Thread.sleep(100);  // 각 메소드에 지연을 추가하여 데드락 가능성 높임
         } catch (InterruptedException e) {}
+
+        // 락 보유한 상태에서 호출
         resourceB.methodB2();
     }
 
@@ -35,6 +39,8 @@ class ResourceA {
 }
 
 class ResourceB {
+    // 아래 두 메서드는 동일한 모니터 객체를 가짐
+    // 따라서 methodB2() 를 호출했을때 methodB() 락이 걸려있으면 대기해야함
 
     public synchronized void methodB(ResourceA resourceA) {
         System.out.println(Thread.currentThread().getName() + ": methodB 실행");

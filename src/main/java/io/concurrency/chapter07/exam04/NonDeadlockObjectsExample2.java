@@ -21,9 +21,10 @@ public class NonDeadlockObjectsExample2 {
     static class ResourceA {
 
         public void methodA(ResourceB resourceB) { // 메서드 오픈
-            synchronized (this) {
+            synchronized (this) { // ResourceA lock
                 System.out.println(Thread.currentThread().getName() + ": methodA 실행");
             }
+            // lock 해제 후 호출 (이미 위의 lock 해제된 상태이므로 해당 메서드 호출 시점에는 수행이 가능한것)
             resourceB.methodB2();
         }
 
@@ -35,9 +36,10 @@ public class NonDeadlockObjectsExample2 {
     static class ResourceB {
 
         public void methodB(ResourceA resourceA) { // 메서드 오픈
-            synchronized (this) {
+            synchronized (this) { // ResourceB lock
                 System.out.println(Thread.currentThread().getName() + ": methodB 실행");
             }
+            // lock 해제 후 호출 (이미 위의 lock 해제된 상태이므로 해당 메서드 호출 시점에는 수행이 가능한것)
             resourceA.methodA2(this);
         }
 

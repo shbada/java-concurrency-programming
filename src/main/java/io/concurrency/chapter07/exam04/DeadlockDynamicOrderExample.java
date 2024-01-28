@@ -1,5 +1,8 @@
 package io.concurrency.chapter07.exam04;
 
+/**
+ * DeadlockOrderExample 데드락에 빠지는 원리와 비슷
+ */
 public class DeadlockDynamicOrderExample {
     private static final Object lock1 = new Object();
     private static final Object lock2 = new Object();
