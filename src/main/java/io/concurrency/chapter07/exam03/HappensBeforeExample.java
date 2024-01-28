@@ -6,6 +6,7 @@ public class HappensBeforeExample {
     private boolean flag = false;
 
     public void writer() {
+        // flag가 volatile 변수일 경우 컴파일시 순서 변경X
         x = 42;
         flag = true;
     }

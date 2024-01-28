@@ -1,5 +1,11 @@
 package io.concurrency.chapter07.exam03;
 
+/**
+ * 가시성 보장
+ * 동시성 보장X
+ * -> 쓰기 작업을 하는 쓰레드가 반드시 1개여야 동시성이 보장됨
+ * -> 쓰기 작업을 하는 쓰레드가 2개 이상일 경우는 synchronized 써야 동시성이 보장됨
+ */
 public class VolatileExample2 {
     private volatile int counter = 0;
 
@@ -16,10 +22,10 @@ public class VolatileExample2 {
     public static void main(String[] args) {
         VolatileExample2 example = new VolatileExample2();
 
-        // 쓰기 스레드
+        // 쓰기 스레드 (1개 - volatile이 동시성 보장)
         Thread writer = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                example.increment();
+                example.increment(); // main memory에 즉시 씀
             }
             System.out.println("쓰기 스레드가 쓰기 작업을 마쳤습니다.");
         });
@@ -27,8 +33,10 @@ public class VolatileExample2 {
         // 읽기 스레드
         Runnable reader = () -> {
             int localValue = -1;
+
+            // 가장 최신의 데이터만 가져옴 (volatile 변수이므로)
             while (localValue < 1000) {
-                localValue = example.getCounter();
+                localValue = example.getCounter(); // main memory에서 읽어옴
                 System.out.println(Thread.currentThread().getName() + " 읽은 값: " + localValue);
                 try {
                     Thread.sleep(100); // Reader는 값을 더 천천히 읽는다.
@@ -39,6 +47,8 @@ public class VolatileExample2 {
         };
 
         writer.start();
+
+        // 여러개의 읽기 쓰레드
         for (int i = 0; i < 5; i++) {
             new Thread(reader).start();
         }
