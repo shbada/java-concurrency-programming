@@ -17,6 +17,7 @@ public class LockOrderExample {
                 try {
                     System.out.println("스레드가 2번 락을 획득했습니다.");
                 } finally {
+                    // 먼저 해제 가능
                     lock1.unlock(); // 1번 락 해제
                     System.out.println("스레드가 1번 락을 해제했습니다.");
                 }

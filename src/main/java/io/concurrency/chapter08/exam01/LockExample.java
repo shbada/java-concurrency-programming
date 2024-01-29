@@ -7,6 +7,8 @@ public class LockExample {
     private int count = 0;
     private Lock lock = new ReentrantLock();
 
+    // increment() 동시에 여러 쓰레드 접근 불가능
+    // lock 을 획득한 쓰레드 수행
     public void increment() {
         lock.lock(); // 락을 명시적으로 활성화
         try {

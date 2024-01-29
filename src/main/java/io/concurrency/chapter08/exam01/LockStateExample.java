@@ -7,6 +7,8 @@ public class LockStateExample {
     private static final ReentrantLock lock = new ReentrantLock();
 
     public static void main(String[] args) {
+        // 락의 재진입 가능
+
         Thread thread1 = new Thread(() -> {
             lock.lock(); // 락 획득 (1번)
             try {
@@ -28,6 +30,8 @@ public class LockStateExample {
                     System.out.println("스레드 1이 락을 2번 해제했습니다.");
                 }
             } finally {
+                // 아래 주석하여 만약 2번 해제한다면?
+                // thread2는 계속 대기하게된다.
                 lock.unlock(); // 락 해제 (3번)
                 System.out.println("스레드 1이 락을 3번 해제했습니다.");
             }
