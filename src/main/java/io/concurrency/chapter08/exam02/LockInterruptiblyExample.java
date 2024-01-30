@@ -37,8 +37,8 @@ public class LockInterruptiblyExample {
 
         thread1.start();
         thread2.start();
-        thread1.interrupt();
-//        thread2.interrupt();
+        thread1.interrupt(); // 인터럽트 수행 (락을 획득한 이후에 걸면 의미없다)
+//        thread2.interrupt(); // 인터럽트 수행
 
         try {
             Thread.sleep(500);

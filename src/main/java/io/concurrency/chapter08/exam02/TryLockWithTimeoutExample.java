@@ -10,6 +10,7 @@ public class TryLockWithTimeoutExample {
 
         Thread thread1 = new Thread(() -> {
             try {
+                // 2초동안 lock 획득하지 못하면 else문 수행
                 if (lock.tryLock(2, TimeUnit.SECONDS)) {
                     try {
                         System.out.println("스레드 1이 락을 획득했습니다");
@@ -18,7 +19,7 @@ public class TryLockWithTimeoutExample {
                         lock.unlock();
                         System.out.println("스레드 1이 락을 해제했습니다");
                     }
-                } else {
+                } else { // 정해진 시간동안 lock 획득 못할 경우 수행
                     System.out.println("스레드 1이 락을 획득하지 못했습니다");
                 }
             } catch (InterruptedException e) {
@@ -36,7 +37,7 @@ public class TryLockWithTimeoutExample {
                         lock.unlock();
                         System.out.println("스레드 2가 락을 해제했습니다");
                     }
-                } else {
+                } else { // 정해진 시간동안 lock 획득 못할 경우 수행
                     System.out.println("스레드 2가 락을 획득하지 못했습니다");
                 }
             } catch (InterruptedException e) {

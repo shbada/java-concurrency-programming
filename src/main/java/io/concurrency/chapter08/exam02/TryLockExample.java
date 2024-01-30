@@ -5,6 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class TryLockExample {
     public static void main(String[] args) {
+        // thread1, thread2 가 lock을 동시에 잡으려고하고 한 쓰레드가 잡으면 다른 쓰레드는 lock 획득할때까지 계속 while문 수행
         Lock lock = new ReentrantLock();
 
         Thread thread1 = new Thread(() -> {
