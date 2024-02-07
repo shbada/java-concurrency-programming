@@ -10,7 +10,9 @@ public class ConsumerProducerExample {
     private static final int CAPACITY = 5;
     private final Queue<Integer> queue = new LinkedList<>();
     private final Lock lock = new ReentrantLock();
+    /* condition1 */
     private final Condition notEmpty = lock.newCondition();
+    /* condition2 */
     private final Condition notFull = lock.newCondition();
 
     public void produce() throws InterruptedException {
