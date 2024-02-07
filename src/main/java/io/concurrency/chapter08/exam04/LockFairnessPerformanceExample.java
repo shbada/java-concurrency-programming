@@ -10,7 +10,9 @@ public class  LockFairnessPerformanceExample {
     private static final Lock unfairLock = new ReentrantLock(false);
 
     public static void main(String[] args) {
+        // 락이 비었을때 먼저 락을 획득 요청하는 스레드가 획득
         runTest("비공정한 락", unfairLock);
+        // 대기 순서대로(가장 오래 대기한 스레드 먼저) 락 획득
         runTest("공정한 락", fairLock);
     }
 
