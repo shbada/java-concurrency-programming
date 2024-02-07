@@ -49,7 +49,7 @@ public class ReentrantReadWriteLockAPIExample {
 
 
         Thread thread1 = new Thread(() -> {
-
+            // 읽기락
             rwLock.readLock().lock();
             try {
                 System.out.println("Has Queued Thread: " + example.hasQueuedThread(Thread.currentThread()));
@@ -62,6 +62,7 @@ public class ReentrantReadWriteLockAPIExample {
 
         });
 
+        // 쓰기락
         Thread thread2 = new Thread(() -> {
             rwLock.writeLock().lock();
             try {

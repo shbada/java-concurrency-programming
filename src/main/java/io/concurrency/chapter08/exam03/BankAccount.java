@@ -16,7 +16,7 @@ public class BankAccount {
     }
 
     public int getBalance(){
-        lock.readLock().lock();
+        lock.readLock().lock(); /* 읽기락 */
         try{
             Thread.sleep(1000);
             return balance.get("account1");
@@ -28,7 +28,7 @@ public class BankAccount {
     }
 
     public void deposit(int amount){
-        lock.writeLock().lock();
+        lock.writeLock().lock(); /* 쓰기락 */
         try{
             Thread.sleep(2000);
             int currentBalance = balance.get("account1");
@@ -43,7 +43,7 @@ public class BankAccount {
     }
 
     public void withdraw(int amount){
-        lock.writeLock().lock();
+        lock.writeLock().lock(); /* 쓰기락 */
         try{
             int currentBalance = balance.get("account1");
             if(currentBalance >= amount){
