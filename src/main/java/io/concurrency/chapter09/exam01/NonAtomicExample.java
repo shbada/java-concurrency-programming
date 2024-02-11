@@ -9,9 +9,10 @@ public class NonAtomicExample {
 
         for (int i = 0; i < NUM_THREADS; i++) {
             threads[i] = new Thread(() -> {
-                for (int j = 0; j < 100000; j++) { // 여러번 반복하여 확률적으로 경쟁 조건을 발생시킴
-                    int expectedValue = value;
-                    int newValue = expectedValue + 1;
+                // 여러번 반복하여 확률적으로 경쟁 조건을 발생시킴
+                for (int j = 0; j < 100000; j++) {
+                    int expectedValue = value; // 캐시에서 읽어온 값
+                    int newValue = expectedValue + 1; // 기댓값
                     value = newValue;
                     System.out.println(Thread.currentThread().getName() + ":" + expectedValue + " , " + newValue);
                 }
