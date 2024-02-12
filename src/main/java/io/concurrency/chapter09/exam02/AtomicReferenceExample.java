@@ -6,14 +6,19 @@ public class AtomicReferenceExample {
 
     public static void main(String[] args) {
 
+        // 비교 대상 : 객체
         User user1 = new User("Alice", 25);
         User user2 = new User("Bob", 30);
 
+        // user2
         AtomicReference<User> atomicReference = new AtomicReference<>(user2);
 
         Thread thread1 = new Thread(() -> {
             User updateUser = new User("Carol", 40);
+
+            // user2 이므로 false
             boolean success = atomicReference.compareAndSet(user1, updateUser);
+
             if (success) {
                 System.out.println("스레드 1 이 " + updateUser + " 로 변경에 성공했습니다.");
             } else {
@@ -23,7 +28,10 @@ public class AtomicReferenceExample {
 
         Thread thread2 = new Thread(() -> {
             User updateUser = new User("David", 50);
+
+            // user2 이므로 true
             boolean success = atomicReference.compareAndSet(user2, updateUser);
+
             if (success) {
                 System.out.println("스레드 2 가 " + updateUser + " 로 변경에 성공했습니다.");
             } else {

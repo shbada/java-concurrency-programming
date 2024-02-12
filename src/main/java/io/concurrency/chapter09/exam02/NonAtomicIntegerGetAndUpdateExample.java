@@ -9,6 +9,7 @@ public class NonAtomicIntegerGetAndUpdateExample {
                 int withdrawalAmount = 100; // 출금액
                 int updatedBalance = 0;
 
+                // synchronized 블록으로 동기화 수행
                 synchronized (NonAtomicIntegerGetAndUpdateExample.class) {
                     if (accountBalance >= withdrawalAmount) {
                         updatedBalance = accountBalance - withdrawalAmount; // 출금 성공

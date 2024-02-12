@@ -7,8 +7,9 @@ public class AtomicIntegerGetAndUpdateExample {
 
     public static void main(String[] args) {
         for (int i = 0; i < 5; i++) {
-            new Thread(() -> {
+            new Thread(() -> { // 2개 스레드 수행
                 int withdrawalAmount = 500; // 출금액
+                // 스레드 안전하게 수행
                 int updatedBalance = accountBalance.getAndUpdate(balance -> {
 
                     if (balance >= withdrawalAmount) {
@@ -18,6 +19,7 @@ public class AtomicIntegerGetAndUpdateExample {
                     }
                 });
 
+                // 3개 스레드 수행
                 if (updatedBalance < 0) {
                     System.out.println(Thread.currentThread().getName() + " : 잔고 부족으로 출금 실패");
                 } else {

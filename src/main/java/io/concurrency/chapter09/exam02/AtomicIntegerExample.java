@@ -15,6 +15,7 @@ public class AtomicIntegerExample {
         for (int i = 0; i <NUM_THREADS; i++) {
             threads[i] = new Thread(()->{
                 for (int j = 0; j < NUM_INCREMENTS; j++) {
+                    // +1 해주고 해당 값을 얻겠다
                     counter.incrementAndGet();
                     System.out.println("Counter: " + counter.get());
                 }
