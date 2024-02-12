@@ -18,6 +18,7 @@ public class CountDownLatchExample {
 
         System.out.println("시작신호를 알렸습니다.");
 
+        // 5개의 쓰레드가 모두 완료될 때까지 기다리게된다. (main 쓰레드 블로킹)
         doneSignal.await();
 
         System.out.println("모든 스레드의 작업이 완료되었습니다.");
@@ -37,6 +38,8 @@ public class CountDownLatchExample {
         @Override
         public void run() {
             try {
+                // 쓰레드 시작
+                // 모든 쓰레드가 여기서 멈춰있음 - startSignal.countDown(); 가 호출되면 이제 수행
                 startSignal.await();
 
                 System.out.println(Thread.currentThread().getName() + " 가 작업을 수행하고 있습니다.");
@@ -46,6 +49,7 @@ public class CountDownLatchExample {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } finally {
+                // 쓰레드 종료
                 doneSignal.countDown();
             }
         }
