@@ -4,10 +4,12 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 public class AtomicIntegerFieldUpdaterAPIExample {
+    // Atomic * FieldUpdater 선언
     static AtomicIntegerFieldUpdater<MyClass> fieldUpdater1;
     static AtomicReferenceFieldUpdater<MyClass, String> fieldUpdater2;
 
     public static class MyClass {
+        // 규칙 1. volatile 이여야한다.
         private volatile int field1;
         private volatile String field2;
 
@@ -21,6 +23,7 @@ public class AtomicIntegerFieldUpdaterAPIExample {
     }
 
     public static void main(String[] args) {
+        // 해당 필드에 대해서 원자적 수행을 하겠다
         fieldUpdater1 = AtomicIntegerFieldUpdater.newUpdater(MyClass.class, "field1");
         fieldUpdater2 = AtomicReferenceFieldUpdater.newUpdater(MyClass.class, String.class, "field2");
 

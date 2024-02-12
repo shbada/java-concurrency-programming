@@ -28,7 +28,7 @@ public class AtomicIntegerFieldUpdaterCASExample {
                     int currentValue;
                     int newValue;
                     do {
-                        currentValue = fieldUpdater.get(instance);
+                        currentValue = fieldUpdater.get(instance); // MyClass 객체
                         newValue = currentValue + 1;
                     } while (!fieldUpdater.compareAndSet(instance, currentValue, newValue));
                 }

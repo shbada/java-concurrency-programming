@@ -13,6 +13,7 @@ public class AtomicIntegerFieldUpdaterCASExample2 {
             for (int i = 0; i < 10; i++) {
                 System.out.println(messageUpdater.get(this));
             }
+            // if 문이 다시 true 로 잡히도록 set
             messageUpdater.set(this, "");
         } else {
             System.out.println("This thread will not enter the loop");
