@@ -4,19 +4,23 @@ public class ThreadPoolMain {
 
     public static void main(String[] args) {
         // 스레드 풀 생성 (3개의 스레드를 가진 스레드 풀)
+        // task 보다 많은 numThreads 를 가지면 대기하는 쓰레드가 생김
         SimpleThreadPool threadPool = new SimpleThreadPool(3);
 
         // 작업을 스레드 풀에 제출
         for (int i = 1; i <= 10; i++) {
             final int taskId = i;
+
             threadPool.submit(() -> {
                 // 작업 내용
                 System.out.println("작업 " + taskId + " 수행 중...");
+
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
+
                 System.out.println("작업 " + taskId + " 완료.");
             });
         }

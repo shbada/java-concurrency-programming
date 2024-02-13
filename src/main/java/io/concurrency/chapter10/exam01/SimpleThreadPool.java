@@ -8,6 +8,8 @@ public class SimpleThreadPool {
     private final int numThreads; // 스레드 풀 내 스레드 수
     private final Queue<Runnable> taskQueue; // 작업 큐
     private final Thread[] threads; // 스레드 배열
+
+    // 가시성 확보를 위한 volatile 선언
     private volatile boolean isShutdown; // 종료 여부 플래그
 
     public SimpleThreadPool(int numThreads) {
@@ -23,9 +25,13 @@ public class SimpleThreadPool {
     }
 
     public void submit(Runnable task) {
+        /* 스레드가 계속 실행중이라면 */
         if (!isShutdown) {
+            // lock 획득
             synchronized (taskQueue) {
+                /* add */
                 taskQueue.offer(task); // 작업 큐에 작업 추가
+                /* taskQueue 에 아무것도 없을때 대기 중이므로 이를 깨운다 (WAIT -> MONITOR(lock 을 획득하기 위함) */
                 taskQueue.notifyAll(); // 대기 중인 스레드에게 작업이 추가되었음을 알림
             }
         }
@@ -33,9 +39,12 @@ public class SimpleThreadPool {
 
     public void shutdown() {
         isShutdown = true; // 스레드 풀 종료 플래그 설정
+
         synchronized (taskQueue) {
             taskQueue.notifyAll(); // 대기 중인 모든 스레드를 깨워 종료하도록 함
         }
+
+        // 모든 쓰레드의 작업이 종료 -> 쓰레드 풀 종료 -> main 쓰레드 종료
         // 스레드 종료까지 대기하는 부분 추가
         for (Thread thread : threads) {
             try {
@@ -50,6 +59,7 @@ public class SimpleThreadPool {
         public void run() {
             while (!isShutdown) {
                 Runnable task;
+
                 synchronized (taskQueue) {
                     while (taskQueue.isEmpty() && !isShutdown) {
                         try {
@@ -58,12 +68,14 @@ public class SimpleThreadPool {
                             Thread.currentThread().interrupt();
                         }
                     }
+
                     if (!taskQueue.isEmpty()) {
                         task = taskQueue.poll(); // 작업 큐에서 작업 가져옴
                     } else {
                         continue; // 작업이 없으면 다시 대기
                     }
                 }
+
                 try {
                     task.run(); // 작업 실행
                 } catch (Throwable t) {
