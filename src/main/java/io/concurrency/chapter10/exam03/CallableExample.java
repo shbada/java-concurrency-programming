@@ -7,6 +7,7 @@ public class CallableExample {
 
         ExecutorService executorService = Executors.newFixedThreadPool(1);
 
+        // Callable
         Callable<Integer> callableTask = ()->{
             System.out.println("Callable 작업 수행중..");
             System.out.println("Callable 작업 완료");
@@ -14,9 +15,13 @@ public class CallableExample {
             return 42;
         };
 
+        // Callable 은 execute() 가 아닌 submit() 한다.
+        // 리턴값 : Future
         Future<Integer> future = executorService.submit(callableTask);
+
         int result;
         try {
+            // get()
             result = future.get();
 
         } catch (InterruptedException e) {

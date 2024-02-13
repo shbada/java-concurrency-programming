@@ -8,11 +8,13 @@ public class RunnableExample {
 
         ExecutorService executorService = Executors.newFixedThreadPool(1);
 
+        // Runnable
         Runnable runnableTask = () ->{
             System.out.println("Runnable 작업 수행 중..");
             System.out.println("Runnable 작업 완료");
         };
 
+        // Runnable 은 execute()
         executorService.execute(runnableTask);
 
         executorService.shutdown();
