@@ -23,6 +23,8 @@ public class SyncExecutorExample {
 
         @Override
         public void execute(Runnable command) {
+            // 실행 주체 : 이 Executor 을 사용하는 쓰레드 (그러므로 동기)
+            // 동기 실행은 Executor 을 사용할 필요는 없지만 쟉업의 실행/제출을 분리하는것에 의미
             command.run();
         }
     }

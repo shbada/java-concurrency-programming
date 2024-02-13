@@ -24,6 +24,7 @@ public class AsyncExecutorExample {
 
         @Override
         public void execute(Runnable command) {
+            // 별도 스레드 생성하여, 해당 스레드가 수행하도록 함
             Thread thread = new Thread(command);
             thread.start();
         }
