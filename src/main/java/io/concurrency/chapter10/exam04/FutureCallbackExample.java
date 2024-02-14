@@ -22,6 +22,7 @@ public class FutureCallbackExample {
         System.out.println("비동기 작업 시작");
 
         registerCallback(future, result ->{
+            // 아래 registerCallback() 내 callback.onComplete(result); 호출시 수행
             System.out.println("비동기 작업 결과:"  + result);
         });
 
@@ -32,13 +33,16 @@ public class FutureCallbackExample {
     private static void registerCallback(Future<Integer> future, Callback callback) {
         new Thread(()->{
             int result;
+
             try {
+                // blocking
                 result = future.get();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
             }
+
             callback.onComplete(result);
         }).start();
     }

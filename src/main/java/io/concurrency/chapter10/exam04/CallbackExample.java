@@ -22,9 +22,11 @@ public class CallbackExample {
             int result = 42;
 
             Callback callback = new MyCallback();
+            // 작업이 완료되면 callback 의 omComplete(), onError() 수행
             callback.onComplete(result);
         });
 
+        // 비동기로 수행
         System.out.println("비동기 작업 시작");
     }
 

@@ -18,8 +18,11 @@ public class FutureExample {
             }
             return 42;
         });
+
         System.out.println("비동기 작업 시작");
+
         try {
+            /* blocking */
             int result = future.get();
             System.out.println("비동기 작업결과: " + result);
         } catch (InterruptedException e) {
@@ -30,6 +33,5 @@ public class FutureExample {
         }
 
         executorService.shutdown();
-
     }
 }
