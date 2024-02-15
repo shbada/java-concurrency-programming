@@ -25,8 +25,10 @@ public class FutureIsCancelledExample {
         Future<Integer> future = executorService.submit(callableTask);
 
         // 작업 취소 시도, 결과가 완료된 경우는 효과가 없다
+        // 해당 결과값은 정확한 취소 여부가 아님 (isCanceled() 로 확인)
         boolean cancel = future.cancel(true);
 
+        // 취소 여부를 정확히 확인할 수 있다
         if (!future.isCancelled()) {
             try {
                 Integer result = future.get();
