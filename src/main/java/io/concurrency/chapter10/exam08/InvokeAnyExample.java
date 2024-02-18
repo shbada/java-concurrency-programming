@@ -17,7 +17,7 @@ public class InvokeAnyExample {
             return "Task 1";
         });
         tasks.add(() -> {
-            Thread.sleep(1000);
+            Thread.sleep(1000); // 가장 빠르게 작업이 완료되는 결과를 반환하고 나머지 작업은 모두 취소된다.
             throw new RuntimeException("error");
         });
         tasks.add(() -> {
@@ -27,6 +27,8 @@ public class InvokeAnyExample {
         long started = 0;
         try {
             started = System.currentTimeMillis();
+            // Future 가 아닌 작업 결과를 가져온다.
+            // "Task2"
             String result = executor.invokeAny(tasks);
             System.out.println("result: " + result);
 
