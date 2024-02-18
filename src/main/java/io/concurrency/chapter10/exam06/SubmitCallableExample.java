@@ -11,7 +11,7 @@ public class SubmitCallableExample {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
 
         // Callable 을 사용한 작업 실행 (submit 메서드)
-        Future<Integer> future = executorService.submit(() -> {
+        Future<Integer> future = executorService.submit(() -> { // call()
             System.out.println("Callable 작업 실행");
             return 42;
         });

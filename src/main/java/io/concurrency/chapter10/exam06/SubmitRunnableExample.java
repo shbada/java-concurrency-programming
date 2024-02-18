@@ -8,6 +8,7 @@ import java.util.concurrent.Future;
 public class SubmitRunnableExample {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
+        // Executor 구현체
         ExecutorService executorService = Executors.newSingleThreadExecutor();
 
         // Runnable 작업을 제출 하고 작업이 완료된 후에 결과 값을 반환
@@ -26,6 +27,8 @@ public class SubmitRunnableExample {
         System.out.println("비동기 작업 결과: " + result1);
 
         // Runnable 작업을 제출 하고 작업이 완료된 후에 결과 값을 반환
+        // execute() 사용해도됨
+        // 결과값은 어차피 비어있음
         Future<?> future2 = executorService.submit(() -> {
             try {
                 Thread.sleep(1000);
@@ -35,7 +38,7 @@ public class SubmitRunnableExample {
         });
 
         Object result2 = future2.get();
-        System.out.println("비동기 작업 결과: " + result2);
+        System.out.println("비동기 작업 결과: " + result2); // null
 
         // 스레드 풀 종료
         executorService.shutdown();
