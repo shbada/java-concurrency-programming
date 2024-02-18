@@ -10,8 +10,9 @@ public class ShutDownExample {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         for (int i = 0; i < 5; i++) {
-            executorService.submit(()->{
+            executorService.submit(()->{ // Callable
                 try {
+                    // InterruptedException 발생할 수 있는 작업이 있어야 shutdownNow 에 대응할 수 있음
                     Thread.sleep(10000);
                     System.out.println(Thread.currentThread().getName() + ": 작업 종료");
                 } catch (InterruptedException e) {
@@ -22,9 +23,11 @@ public class ShutDownExample {
             });
         }
 
-        executorService.shutdown();
+        executorService.shutdown(); // 호출만 되면 isShutdown()가 true
 
         try {
+            // 1초동안만 대기
+            // 1초 지나면 if 블록 실행
             if(!executorService.awaitTermination(1, TimeUnit.SECONDS)){
                 executorService.shutdownNow();
                 System.out.println("스레드 풀 강제 종료 수행");
