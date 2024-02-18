@@ -16,7 +16,7 @@ public class InvokeAllExample {
         });
         tasks.add(() -> {
             Thread.sleep(2000);
-            return 1;
+            return 2;
         });
         tasks.add(() -> {
             throw new RuntimeException("invokeAll");
@@ -28,6 +28,8 @@ public class InvokeAllExample {
 
             // 여러 작업 제출 후 결과를 반환받음
             List<Future<Integer>> results = executor.invokeAll(tasks);
+
+            // 결과가 담기는 순서는 보장받음
             for (Future<Integer> future : results) {
                 // 정상이든 예외든 모든 결과는 종료된 것이므로 true 반환
                 boolean done = future.isDone();
