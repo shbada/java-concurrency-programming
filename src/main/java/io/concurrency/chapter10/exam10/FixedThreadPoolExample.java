@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 
 public class FixedThreadPoolExample {
     public static void main(String[] args) {
-
+        /* 고정 크기 스레드 풀 생성 */
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
         for (int i = 1; i <= 5; i++) {

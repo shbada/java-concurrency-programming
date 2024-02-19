@@ -34,6 +34,9 @@ public class FixedCustomThreadFactoryExample {
         executor.shutdown();
     }
 
+    /**
+     * 커스텀 ThreadFactory 생성
+     */
     static class CustomThreadFactory implements ThreadFactory {
         private final String name;
         private int threadCount = 0;
@@ -45,9 +48,14 @@ public class FixedCustomThreadFactoryExample {
         @Override
         public Thread newThread(Runnable r) {
             threadCount++;
+
+            // thread명 지정
             String threadName = name + "-" + threadCount;
+
             Thread newThread = new Thread(r, threadName);
+
             System.out.println("스레드 이름: " + threadName);
+
             return newThread;
         }
     }
