@@ -11,6 +11,7 @@ public class ScheduleCallableExample {
             return "작업이 한번 실행 되고 결과를 반환 합니다.";
         };
 
+        // 3초 지연 후 task 실행
         ScheduledFuture<String> future = scheduler.schedule(task, 3, TimeUnit.SECONDS);
 
         try {

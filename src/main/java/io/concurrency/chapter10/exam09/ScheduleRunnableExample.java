@@ -14,6 +14,7 @@ public class ScheduleRunnableExample {
         };
 
         // 주어진 시간 후에 작업을 실행
+        // 2초 지연 후 task 실행
         scheduler.schedule(task, 2, TimeUnit.SECONDS);
 
         try {

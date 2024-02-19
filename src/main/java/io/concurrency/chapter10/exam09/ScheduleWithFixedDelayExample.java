@@ -12,13 +12,15 @@ public class ScheduleWithFixedDelayExample {
         Runnable task = () -> {
             try {
                 Thread.sleep(1000);
+                // 주기보다 느리던, 빠르던 무조건 작업이 끝난 이후 delay 된다.
+//                Thread.sleep(2000);
                 System.out.println("thread: " + Thread.currentThread().getName());
             } catch (InterruptedException e) {
                 // 예외 처리
             }
         };
 
-        // 처음 1 초가 지난 후 실행 되고 작업이 완료 되고 나서 지정된 주기 마다 계속 실행 된다
+        // 처음 1 초가 지난 후 실행 되고 작업이 완료 되고 나서 지정된 주기(1초) 마다 계속 실행 된다
         ScheduledFuture<?> future = scheduler.scheduleWithFixedDelay(task, 1, 1, TimeUnit.SECONDS);
 
         try {
