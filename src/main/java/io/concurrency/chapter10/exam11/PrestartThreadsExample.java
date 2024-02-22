@@ -17,9 +17,13 @@ public class PrestartThreadsExample {
         ThreadPoolExecutor executor =
                 new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime, TimeUnit.SECONDS, workQueue);
 
+        // task 가 들어오기 전에 쓰레드를 미리 생성해놓는 메서드
+        // 원래는 작업이 들어와야 2개를 생성하는데, 아래 메서드 수행시 작업 전 1개 또는 corePoolSize 만큼 쓰레드 생성
+        // 1개만 생성
 //        executor.prestartCoreThread();
 //        executor.prestartCoreThread();
 
+        // corePoolSize만큼 생성
         executor.prestartAllCoreThreads();
 
         for (int i = 0; i < taskNum; i++) {

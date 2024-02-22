@@ -11,6 +11,7 @@ public class ThreadPoolExecutorExample {
         int corePoolSize = 2;
         int maxPoolSize = 4;
         long keepAliveTime = 0L;
+        // LinkedBlockingQueue 는 maxPoolSize 의미가 없다
 //        BlockingQueue<Runnable> workQueue =  new LinkedBlockingQueue<>();
         BlockingQueue<Runnable> workQueue =  new ArrayBlockingQueue<>(4);
         int taskNum = 9;
