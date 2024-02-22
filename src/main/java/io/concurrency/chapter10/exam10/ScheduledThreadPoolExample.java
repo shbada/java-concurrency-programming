@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ScheduledThreadPoolExample {
     public static void main(String[] args) {
+        // newScheduledThreadPool (1개 쓰레드)
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
         // 주기적으로 실행할 작업
@@ -19,6 +20,7 @@ public class ScheduledThreadPoolExample {
         int updatedPeriod = 3; // 변경된 주기 (초단위)
 
         // 초기 스케줄링
+        // 주기 : 1초, 초기지연 : 0초
         ScheduledFuture<?> future = executor.scheduleAtFixedRate(task, initialDelay, initialPeriod, TimeUnit.SECONDS);
 
         try {
@@ -26,6 +28,8 @@ public class ScheduledThreadPoolExample {
             future.cancel(true); // 스케줄링 취소
 
             // 변경된 주기로 다시 스케줄링
+            // 주기 : 3초
+            System.out.println("스케줄링 변경..");
             future = executor.scheduleAtFixedRate(task, 0, updatedPeriod, TimeUnit.SECONDS);
 
             Thread.sleep(10000); // 10초 동안 실행 (변경된 주기로 실행)
