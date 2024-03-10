@@ -14,7 +14,7 @@ public class ExceptionallyExample {
                     }
                     return 10;
                 }).thenApply(r -> r + 20)
-                .exceptionally(e -> {
+                .exceptionally(e -> { // 오류일 경우만
                     System.out.println("Exception: " + e.getMessage());
                     return -1;
                 });

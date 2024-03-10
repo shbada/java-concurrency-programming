@@ -12,7 +12,7 @@ public class HandleExample {
                         Thread.currentThread().interrupt();
                     }
                     return 10;
-                }).handle((r, e) ->{
+                }).handle((r, e) ->{ // 정상, 오류 케이스 2개 모두
                     if(e !=null){
                         System.out.println("비동기 예외처리 1: " + e.getMessage());
                         return -1;
