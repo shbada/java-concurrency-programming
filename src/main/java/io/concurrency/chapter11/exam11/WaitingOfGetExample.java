@@ -15,6 +15,7 @@ public class WaitingOfGetExample {
         CompletableFuture<Void> allOf = CompletableFuture.allOf(service1Future, service2Future, service3Future);
 
         try {
+            // 예외처리 필수
             allOf.get(); // 모든 작업이 완료될 때까지 대기
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

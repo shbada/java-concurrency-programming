@@ -12,7 +12,7 @@ public class WaitingOJoinExample {
         CompletableFuture<String> service3Future = CompletableFuture.supplyAsync(() -> myService.callService("Service3"));
 
         CompletableFuture<Void> allOf = CompletableFuture.allOf(service1Future, service2Future, service3Future);
-        allOf.join(); // 모든 작업이 완료될 때까지 대기
+        allOf.join(); // 모든 작업이 완료될 때까지 대기 (예외처리 별도X)
 
         // 각 서비스의 결과를 가져올 수 있음, 결과는 모두 완료된 상태임
         String result1 = service1Future.join();
