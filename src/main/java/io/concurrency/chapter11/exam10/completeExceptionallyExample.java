@@ -29,6 +29,7 @@ public class completeExceptionallyExample {
             Thread.sleep(500);
 //            throw new IllegalArgumentException("error");
         } catch (Exception e) {
+            // 에러 담기
             cf.completeExceptionally(e);
         }
         cf.complete("Hello World");

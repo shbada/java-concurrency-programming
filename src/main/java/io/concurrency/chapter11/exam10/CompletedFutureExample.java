@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class CompletedFutureExample {
     public static void main(String[] args) {
-
+        // 값을 가지고있는 cf 생성
         CompletableFuture<String> cf = CompletableFuture.completedFuture("Hello World");
 
 //        CompletableFuture<String> cf2 = new CompletableFuture<>();

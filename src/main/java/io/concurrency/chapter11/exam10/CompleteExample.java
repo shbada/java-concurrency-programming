@@ -30,7 +30,10 @@ public class CompleteExample {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+                // 명시적으로 값 설정
                 cf.complete(40);
+                // 또 complete()를 호출하면 null이 아니므로 기존값 유지
+//                cf.complete(50);
             });
             return cf;
         }
